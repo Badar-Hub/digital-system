@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/runtime-core';
-import HeaderSp from './components/Layout/Header.vue';
 import FooterSp from './components/Layout/Footer.vue';
+import HeaderSp from './components/Layout/Header.vue';
 
 export default defineComponent({
   components: {
@@ -21,6 +21,19 @@ export default defineComponent({
 .width-lg {
   max-width: 1200px;
   margin: auto;
+}
+.bg {
+  &-cl {
+    &-black {
+      background-color: black;
+    }
+    &-aquamarine {
+      background-color: aquamarine;
+    }
+  }
+}
+.cl-red {
+  color: red;
 }
 .cl-white {
   color: white;

@@ -65,17 +65,75 @@
         </div>
       </div>
     </div>
+    <security-needs />
+    <div class="row width-lg q-my-md our-clients">
+      <div class="col-sm-6 text-center our-client q-pa-md q-py-xl">
+        <h4 class="cl-white q-my-lg">Hear from Our Clients</h4>
+        <p class="cl-white text-body1 q-my-xl">
+          “ Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies
+          nisi. Nam eget dui. Etiam rhoncus. “
+        </p>
+        <h6 class="cl-white q-my-lg">Steve Austin - Managing Director</h6>
+      </div>
+      <div class="col-sm-3 q-pa-md q-my-auto">
+        <div class="client-container text-center">
+          <img class="client-img" src="@/assets/section/client.jpeg" />
+          <p class="text-body1 q-my-sm">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-3 q-pa-md q-my-auto">
+        <div class="client-container text-center">
+          <img class="client-img" src="@/assets/section/client.jpeg" />
+          <p class="text-body1 q-my-sm">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="ideas">
+      <div class="row width-lg q-pa-xl">
+        <h4 class="q-mt-lg q-mb-none">Have any ideas in your mind?</h4>
+        <div class="row full-width justify-between">
+          <h2 class="q-my-sm cl-white">We provide leading security systems</h2>
+          <q-btn class="q-my-sm" label="Request A Quote" color="black" />
+        </div>
+      </div>
+    </div>
+    <div class="compaines width-lg">
+      <div class="row heading justify-center">
+        <h3 class="q-my-xl font-weight-bolder">
+          Companies We Have as Clients
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col col-sm-3 text-center">
+          <img class="images" src="@/assets/section/logo/01.png" />
+        </div>
+        <div class="col col-sm-3 text-center">
+          <img class="images" src="@/assets/section/logo/01.png" />
+        </div>
+        <div class="col col-sm-3 text-center">
+          <img class="images" src="@/assets/section/logo/01.png" />
+        </div>
+        <div class="col col-sm-3 text-center">
+          <img class="images" src="@/assets/section/logo/01.png" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import SecurityNeeds from '@/components/Layout/SecurityNeeds.vue';
 import { defineComponent, ref } from 'vue';
 import ChoseCard from '../components/Layout/ChoseCard.vue';
 import ProcessCircle from '../components/Layout/ProcessCircle.vue';
 import ResponsiveCard from '../components/Layout/ResponsiveCard.vue';
 
 export default defineComponent({
-  components: { ResponsiveCard, ChoseCard, ProcessCircle },
+  components: { ResponsiveCard, ChoseCard, ProcessCircle, SecurityNeeds },
   setup() {
     const cards = ref([
       {
@@ -261,6 +319,30 @@ export default defineComponent({
   .our-process {
     background-color: #222222 !important;
     background-image: url(../assets/section/fw2.png);
+  }
+  .our-clients {
+    .our-client {
+      background-color: rgb(37, 37, 37);
+    }
+    .client-container {
+      max-width: 250px;
+      width: 100%;
+      .client-img {
+        max-width: 250px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .ideas {
+    background-image: url(../assets/section/pattern.png);
+    background-color: #027f9a;
+  }
+  .companies {
+    .images {
+      max-width: 250px;
+      width: 100%;
+    }
   }
 }
 </style>
