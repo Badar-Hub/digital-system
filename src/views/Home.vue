@@ -1,8 +1,33 @@
 <template>
   <div class="home">
     <hr class="q-my-none" />
-    <div class="row header-image">
-      <img src="@/assets/camera.jpeg" alt="camera" />
+    <div class="row header-image relative">
+      <div
+        class="row top60 full-width justify-between q-ma-md q-pa-md absolute"
+      >
+        <q-icon
+          class="q-my-sm cursor-pointer"
+          color="primary"
+          size="lg"
+          name="arrow_back_ios"
+          @click="previousSlide"
+        />
+        <q-icon
+          class="q-my-sm cursor-pointer"
+          color="primary"
+          size="lg"
+          name="arrow_forward_ios"
+          @click="nextSlide"
+        />
+      </div>
+      <img
+        v-for="(image, index) in slides"
+        :key="index"
+        v-show="index === selectedIndex"
+        class="slide-image fade"
+        :src="require(`@/assets/section/${image}`)"
+        :alt="image"
+      />
     </div>
     <div class="row justify-center items-center section pattern">
       <h4 class="q-my-lg">
@@ -127,7 +152,7 @@
 
 <script lang="ts">
 import SecurityNeeds from '@/components/Layout/SecurityNeeds.vue';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import ChoseCard from '../components/Layout/ChoseCard.vue';
 import ProcessCircle from '../components/Layout/ProcessCircle.vue';
 import ResponsiveCard from '../components/Layout/ResponsiveCard.vue';
@@ -175,7 +200,7 @@ export default defineComponent({
     const choseCards = ref([
       {
         img: 'schedule',
-        heading: '24/7/365 Support',
+        heading: 'Technical Suport',
         paragraph:
           'Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.',
         link: '/',
@@ -260,11 +285,40 @@ export default defineComponent({
         link: '/',
       },
     ]);
+    const slides = ref(['hikvision.png', 'clover-slide.png', 'hikvision.png', 'clover-slide.png']);
+    const selectedIndex = ref(0);
+    const nextSlide = () => {
+      if (selectedIndex.value === slides.value.length - 1) {
+        selectedIndex.value = 0;
+      } else {
+        selectedIndex.value++;
+      }
+    };
+    const previousSlide = () => {
+      if (selectedIndex.value === 0) {
+        selectedIndex.value = slides.value.length - 1;
+      } else {
+        selectedIndex.value--;
+      }
+    };
 
+    onMounted(() => {
+      setInterval(() => {
+        if(selectedIndex.value === slides.value.length -1) {
+          selectedIndex.value = 0
+        } else {
+          selectedIndex.value++
+        }
+      }, 5000)
+    })
     return {
       cards,
+      slides,
       choseCards,
+      nextSlide,
+      previousSlide,
       processCircle,
+      selectedIndex,
     };
   },
 });
@@ -342,6 +396,43 @@ export default defineComponent({
     .images {
       max-width: 250px;
       width: 100%;
+    }
+  }
+  .slide-image {
+    transition: 0.6s ease;
+  }
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+
+  @-webkit-keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev,
+    .next,
+    .text {
+      font-size: 11px;
     }
   }
 }

@@ -41,4 +41,7 @@ export default defineComponent({
 .cl-black {
   color: black;
 }
+.top60 {
+  top: 60%;
+}
 </style>

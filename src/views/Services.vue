@@ -1,8 +1,37 @@
 <template>
   <div class="services">
-    <div class="row">
-      <div v-for="(data, index) in packages" :key="index" class="col-xs-4">
-        <service-card :data="data" />
+    <div class="row width-lg">
+      <div class="col col-xs-12 col-sm-6 q-pa-md">
+        <q-btn
+          @click="merchantRates = true"
+          label="Merchant Rates"
+          color="primary"
+          class="full-width"
+        />
+      </div>
+      <div class="col col-xs-12 col-sm-6 q-pa-md">
+        <q-btn
+          @click="merchantRates = false"
+          label="Security Rates"
+          color="primary"
+          class="full-width"
+        />
+      </div>
+    </div>
+    <div class="text-center" v-show="merchantRates">
+      <h1 class="q-my-sm">Merchant Rates</h1>
+      <div class="row">
+        <div v-for="(data, index) in packages" :key="index" class="col-xs-4">
+          <service-card :data="data" />
+        </div>
+      </div>
+    </div>
+    <div class="text-center" v-show="!merchantRates">
+      <h1 class="q-my-sm">Security Rates</h1>
+      <div class="row">
+        <div v-for="(data, index) in packages" :key="index" class="col-xs-4">
+          <service-card :data="data" />
+        </div>
       </div>
     </div>
   </div>
@@ -58,9 +87,10 @@ export default defineComponent({
         ],
       },
     ]);
-
+    const merchantRates = ref(false);
     return {
       packages,
+      merchantRates,
     };
   },
 });
