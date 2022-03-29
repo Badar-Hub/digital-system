@@ -7,8 +7,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: "Badar-Hub-patch-1"
-  workflow_dispatch:
+    branches:
+      - 'Badar-Hub-patch-1'
+
 
 
 
